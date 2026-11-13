@@ -5,7 +5,7 @@ A season-long analytics project, built and run live during the 2026 NFL season. 
 1. **A live season tracker.** An automated Databricks pipeline pulls fresh data every week and ranks all 32 offenses and defenses three ways: what happened, how good each team really is, and what to expect going forward. It has been running weekly since September 2026, and the rankings, methods, and findings have evolved as the season played out.
 2. **A research question.** *Did NFL defenses make the right call going lighter?* Using 10 seasons of play-by-play and box-count data (2016–2025), it measures what a light box costs against the run and what it buys against the pass.
 
-![Offense vs. defense efficiency, 2026](images/Efficiency.png)
+![Offense vs. defense efficiency, 2026](Efficiency.png)
 
 **Headline finding:** light boxes are punished on the ground every season, but save almost as much against the pass. Since offenses throw about two-thirds of the time against them, **the tradeoff is roughly break-even**. Going light wasn't a mistake. It's a balanced response to a pass-first league.
 
@@ -30,7 +30,7 @@ A season-long analytics project, built and run live during the 2026 NFL season. 
 
 | Pass defense | Rush defense |
 |---|---|
-| ![Pass defense](Pass_Rush_Defense.png) | ![Rush defense](Rush_defense.png) |
+| ![Pass defense](Pass_Rush_Defense.png) | ![Rush defense](Rush_Defense.png) |
 
 ### Three rankings, three questions
 
