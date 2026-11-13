@@ -26,11 +26,11 @@ A season-long analytics project, built and run live during the 2026 NFL season. 
 
 | Overall defense | Offense |
 |---|---|
-| ![Defense rankings](images/Defense.png) | ![Offense rankings](images/Offense.png) |
+| ![Defense rankings](Defense.png) | ![Offense rankings](Offense.png) |
 
 | Pass defense | Rush defense |
 |---|---|
-| ![Pass defense](images/Pass_Rush_Defense.png) | ![Rush defense](images/Rush_defense.png) |
+| ![Pass defense](Pass_Rush_Defense.png) | ![Rush defense](Rush_defense.png) |
 
 ### Three rankings, three questions
 
@@ -86,7 +86,7 @@ A pass is worth far more than a run in the modern NFL (about +0.09 EPA vs. below
 
 *Negative net = the light box paid off for the defense.*
 
-![Light-box tradeoff by season](images/Light_Box.png)
+![Light-box tradeoff by season](Light_Box.png)
 
 - **Light boxes are punished on the ground every season,** by +0.04 to +0.075 EPA per run.
 - **They save EPA against the pass every season,** by up to 0.057 per pass.
