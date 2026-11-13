@@ -7,7 +7,7 @@ A season-long analytics project, built and run live during the 2026 NFL season. 
 
 ![Offense vs. defense efficiency, 2026](Efficiency.png)
 
-**Headline finding:** light boxes are punished on the ground every season, but save almost as much against the pass. Since offenses throw about two-thirds of the time against them, **the tradeoff is roughly break-even**. Going light wasn't a mistake. It's a balanced response to a pass-first league.
+Headline finding: light boxes are punished on the ground every season, but they also save EPA against the pass, and since offenses throw about two-thirds of the time against them, the tradeoff is roughly break-even. Going light wasn’t a mistake. It’s a balanced response to a pass-first league.
 
 ---
 
@@ -57,7 +57,7 @@ Notes recorded as the season unfolded. Each one shaped how the model works.
 | Week 5 | Penalty plays like defensive pass interference were being dropped by the play filter (84 DPIs, about +1.76 EPA each) | Switched to the standard nflfastR play filter so penalties count |
 | Week 6 | Atlanta looked bad in yards-allowed rankings but above average per play: it faced the 2nd-most dropbacks in the league | Split defense into separate pass and rush rankings; identified "funnel" defenses |
 | Week 6 | Jacksonville's defense fell from 4th to 13th after one shootout vs. Houston, while its dominant win over Cleveland counted for only 11 plays | Added game-level rank ranges to show how uncertain each rank is |
-| Week 7 | Detroit's offense ranked 3rd on all plays but 12th after removing garbage time, since 30% of its plays came in lopsided games | Replaced the hard garbage-time cutoff with soft down-weighting (backtested, see below) |
+| Week 7 | Detroit's offense ranked 3rd on all plays but 11th after removing garbage time (12th after opponent adjustment), since 30% of its plays came in lopsided games | Replaced the hard garbage-time cutoff with soft down-weighting (backtested, see below) |
 | Week 7 | Rankings differed from SumerSports' public table | Traced most of the gap to penalty handling (rank agreement rose from 0.72 to 0.91 when matched); backtested both and kept penalties |
 | Week 8 | Top defenses: MIN, TB, SEA. Top offenses: SF, BUF, KC | Added a prior-season forecast after backtesting showed it predicts better |
 
@@ -93,7 +93,7 @@ A pass is worth far more than a run in the modern NFL (about +0.09 EPA vs. below
 - **Light boxes are punished on the ground every season,** by +0.04 to +0.075 EPA per run.
 - **They save EPA against the pass every season,** by up to 0.057 per pass.
 - Because offenses pass about two-thirds of the time against light boxes, **the two effects roughly cancel out** (net between −0.014 and +0.020 per snap). That's the kind of balance game theory predicts when each side adjusts to the other.
-- **Even against a light box, a run (about −0.06 EPA) is worth less than an average pass (about +0.09).** So offenses can't simply punish light boxes by running more, which matches early-down run rates staying flat around 44% for a decade.
+- **Even against a light box, a run (about −0.07 EPA) is worth less than an average pass (about +0.10) on early downs.** So offenses can't simply punish light boxes by running more, which matches early-down run rates staying flat around 44% for a decade.
 
 **What it means:** the "return of the run game" isn't a league-wide shift. Light boxes give up a small, real edge on the ground, and it pays off for offenses that can multiply it with an elite back, a strong line, or a running quarterback.
 
