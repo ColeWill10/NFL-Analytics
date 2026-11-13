@@ -32,6 +32,8 @@ A season-long analytics project, built and run live during the 2026 NFL season. 
 |---|---|
 | ![Pass defense](Pass_Rush_Defense.png) | ![Rush defense](Rush_Defense.png) |
 
+**Full tables:** [Overall defense](results/def_rankings_2026.csv) · [Pass defense](results/def_pass_2026.csv) · [Rush defense](results/def_rush_2026.csv) · [Offense](results/off_rankings_2026.csv) · [Light-box tradeoff](results/light_box_tradeoff.csv)
+
 ### Three rankings, three questions
 
 "Who's the best defense?" means different things, so every main table has three ranks:
@@ -130,23 +132,23 @@ Early-down run rates stayed flat at about 44% the whole time. Shifts this sudden
 
 ```mermaid
 flowchart LR
-    A[nflverse data<br/>play-by-play, participation,<br/>FTN charting, PFR stats] -->|ingest_raw<br/>Python| B[(workspace.raw<br/>raw tables)]
-    B -->|explore_weekly<br/>pandas + SQL| C[(workspace.analytics<br/>season tables)]
-    B -->|explore_weekly| E[Light-box tradeoff<br/>2016–2025]
+    A[nflverse data<br/>play-by-play, participation,<br/>FTN charting, PFR stats] -->|01_ingest_raw<br/>Python| B[(workspace.raw<br/>raw tables)]
+    B -->|02_explore<br/>pandas + SQL| C[(workspace.analytics<br/>season tables)]
+    B -->|02_explore| E[Light-box tradeoff<br/>2016–2025]
     E --> C
     C --> D[Databricks dashboard]
-    G[GitHub repo] -.->|job runs notebooks<br/>from main branch| F[Weekly scheduled job]
-    F -.->|runs| A
+    F[Weekly scheduled job] -.->|runs| A
+    G[Databricks Git folder] -.->|commit & push| H[GitHub repo]
 ```
 
 | Layer | What it does |
 |---|---|
-| **Ingest** (`ingest_raw`) | Pulls 10 nflverse datasets (2016–2026) with `nflreadpy` and saves them unchanged to `workspace.raw`. Each dataset uses its own valid season range. |
-| **Transform** (`explore_weekly`) | Cleans plays, computes efficiency stats, opponent adjustments, forecasts, and uncertainty ranges, and saves the season tables to `workspace.analytics`. |
-| **Research** (end of `explore_weekly`) | Historical personnel trends and the light-box tradeoff analysis, saving `light_box_tradeoff`, `light_box_by_defense`, and `light_box_by_offense`. |
+| **Ingest** (`01_ingest_raw`) | Pulls 10 nflverse datasets (2016–2026) with `nflreadpy` and saves them unchanged to `workspace.raw`. Each dataset uses its own valid season range. |
+| **Transform** (`02_explore`) | Cleans plays, computes efficiency stats, opponent adjustments, forecasts, and uncertainty ranges, and saves the season tables to `workspace.analytics`. |
+| **Research** (end of `02_explore`) | Historical personnel trends and the light-box tradeoff analysis, saving `light_box_tradeoff`, `light_box_by_defense`, and `light_box_by_offense`. |
 | **Serve** | A Databricks dashboard reads the analytics tables, with team filters and week-by-week trend charts. |
 | **Orchestration** | A Databricks job runs ingest → transform every week, after NFL stat corrections are published. |
-| **Version control** | Notebooks live in a Databricks Git folder linked to this repo, and the scheduled job runs them directly from GitHub. |
+| **Version control** | Notebooks live in a Databricks Git folder linked to this repo and are committed and pushed from Databricks. |
 
 ---
 
@@ -191,13 +193,13 @@ Every modeling choice was backtested on **2018–2025**, judged by how well earl
 ## Repository structure
 
 ```
-notebooks/
-  ingest_raw.py        # pulls nflverse data into workspace.raw
-  explore_weekly.py    # 2026 rankings, forecasts, dashboard tables, personnel trends,
+Notebooks/
+  01_ingest_raw        # pulls nflverse data into workspace.raw
+  02_explore           # 2026 rankings, forecasts, dashboard tables, personnel trends,
                        # and the research question (light-box tradeoff)
-images/
-  efficiency.png, defense.png, offense.png,
-  pass_defense.png, rush_defense.png, light_box.png
+results/               # CSV copies of the finished tables
+Efficiency.png, Defense.png, Offense.png,
+Pass_Rush_Defense.png, Rush_Defense.png, Light_Box.png
 README.md
 ```
 
